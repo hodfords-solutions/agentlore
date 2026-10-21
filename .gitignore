@@ -1,0 +1,20 @@
+node_modules/
+dist/
+coverage/
+*.log
+*.tmp
+
+# Local machine and editor files
+.DS_Store
+.idea/
+.vscode/
+.env
+.env.*
+.claude/settings.local.json
+
+# An agentlore home or index made while developing (AGENTLORE_HOME pointed here): it holds
+# excerpts of real transcripts
+.agentlore/
+*.db
+*.db-wal
+*.db-shm

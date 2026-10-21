@@ -1,0 +1,59 @@
+name: Release
+on:
+  push:
+    branches: [main]
+
+# One release run at a time; never cancel a run that may be publishing.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  # The same gate as CI, on the exact commit about to be released: nothing is published unless
+  # lint, typecheck, build and tests pass here.
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v4.4.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - run: pnpm build
+      - run: pnpm test
+
+  release:
+    needs: check
+    # Opens or updates the "Version Packages" pull request while changesets are pending; once it
+    # is merged, publishes the new version to npm (trusted publishing, with provenance).
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # push the release commit and tags, create GitHub releases
+      pull-requests: write # open and update the "Version Packages" pull request
+      id-token: write # npm trusted publishing (OIDC) and provenance
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v4.4.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          # Node 24 bundles npm 11, which supports trusted publishing.
+          node-version: 24
+          cache: pnpm
+          registry-url: https://registry.npmjs.org
+      - run: pnpm install --frozen-lockfile
+      - uses: changesets/action@ae32849d5ba541f9ae29e40e22a623bc13562f51 # v2.1.2
+        with:
+          publish-script: pnpm changeset publish
+          commit-message: "chore: release"
+          pr-title: "chore: release"
+        env:
+          NPM_CONFIG_PROVENANCE: "true"

@@ -1,0 +1,6 @@
+{"timestamp":"2026-07-08T07:29:14.467Z","type":"session_meta","payload":{"id":"codex-s1","cwd":"/work/repo-b","originator":"codex_cli_rs"}}
+{"timestamp":"2026-07-08T07:29:15.000Z","type":"response_item","payload":{"type":"message","role":"developer","content":[{"type":"input_text","text":"<permissions instructions>"}]}}
+{"timestamp":"2026-07-08T07:29:16.000Z","type":"event_msg","payload":{"type":"user_message","message":"How does the warehouse import work?"}}
+{"timestamp":"2026-07-08T07:29:20.000Z","type":"event_msg","payload":{"type":"agent_message","message":"The warehouse import is a one-time seed via POST /inventory/seed, not incremental."}}
+{"timestamp":"2026-07-08T07:29:21.000Z","type":"event_msg","payload":{"type":"token_count"}}
+not json at all
