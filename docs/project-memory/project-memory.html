@@ -125,6 +125,9 @@ code { font-family: var(--mono); font-size: 12px; color: var(--ink); }
 .notes { margin: 0; padding: 0 0 0 18px; color: var(--ink-soft); display: grid; gap: 4px; max-width: 110ch; }
 .notes strong { color: var(--ink); font-weight: 500; }
 
+/* #figure (the README image): the drawing alone, without the parts list and notes. */
+.figure-only .lower, .figure-only .notes { display: none; }
+.figure-only body { padding-block: 12px; }
 @page { size: A3 landscape; margin: 8mm; }
 @media print {
   html, body { background: var(--paper-deep); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
@@ -137,6 +140,9 @@ code { font-family: var(--mono); font-size: 12px; color: var(--ink); }
   table { min-width: 0; }
 }
 </style>
+<script>
+  if (location.hash === "#figure") document.documentElement.classList.add("figure-only");
+</script>
 </head>
 <body>
 

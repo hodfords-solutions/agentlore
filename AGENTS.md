@@ -35,8 +35,9 @@ the list above as well.
 ## Keep the project memory blueprint in sync
 
 [`docs/project-memory/project-memory.html`](docs/project-memory/project-memory.html) is the source
-of `project-memory.pdf`, a blueprint of project memory ([ADR 0004](docs/adr/0004-project-memory.md)).
-`pnpm docs:pdf` renders it too. Update it with any change to the notes and their limits
+of `project-memory.pdf`, a blueprint of project memory ([ADR 0004](docs/adr/0004-project-memory.md)),
+and of `project-memory.png`, its drawing shown at the top of the README. `pnpm docs:pdf` renders
+both. Update it with any change to the notes and their limits
 (`src/core/memory.ts`), what sessions get (`src/core/recall.ts`, the hooks in
 `src/integrations/`), the MCP memory tools, or consolidation (`src/core/consolidate.ts`,
 `src/integrations/claude-cli.ts`). `test/docs/how-it-works.test.ts` checks its numbers.

@@ -62,8 +62,9 @@ describe("docs/project-memory", () => {
   const blueprint = readFileSync(path.join(pm, "project-memory.html"), "utf8");
   const n = (value: number) => value.toLocaleString("en-US");
 
-  it("has its PDF next to the source", () => {
+  it("has its PDF, and the README's image of it, next to the source", () => {
     expect(existsSync(path.join(pm, "project-memory.pdf"))).toBe(true);
+    expect(existsSync(path.join(pm, "project-memory.png"))).toBe(true);
   });
 
   it("shows the current limits", () => {

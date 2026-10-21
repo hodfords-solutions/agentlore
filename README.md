@@ -8,6 +8,8 @@
 and tools, keeps what matters about each project, and every new session starts out knowing what
 you know. Works with Claude Code, Codex, Cursor and Antigravity. Local-first.
 
+[![How agentlore remembers: sessions are recorded, what matters is kept as project notes, and new sessions start with them](docs/project-memory/project-memory.png)](docs/project-memory/project-memory.pdf)
+
 ## The problem
 
 You work on many projects and repos, or on one project across many sessions: one session digs

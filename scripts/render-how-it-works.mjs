@@ -1,5 +1,5 @@
-// Renders the drawings in docs/ (how-it-works, project-memory) to PDFs next to their HTML with
-// headless Chrome or Chromium. Set CHROME_PATH if the browser is not in a usual place. Needs network access for the
+// Renders the drawings in docs/ (how-it-works, project-memory) to PDFs next to their HTML, and the
+// project memory blueprint to the PNG the README shows, with headless Chrome or Chromium. Set CHROME_PATH if the browser is not in a usual place. Needs network access for the
 // page's Google Fonts.
 import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
@@ -54,3 +54,22 @@ for (const { html, pdf } of drawings) {
   writeFileSync(pdf, scrubbed, "latin1");
   console.log(`wrote ${path.relative(process.cwd(), pdf)}`);
 }
+
+// The README image: the blueprint's drawing alone (#figure), at 1.5x for sharp text.
+const blueprint = path.join(docs, "project-memory", "project-memory.html");
+const png = path.join(docs, "project-memory", "project-memory.png");
+execFileSync(
+  chrome,
+  [
+    "--headless",
+    "--disable-gpu",
+    "--hide-scrollbars",
+    "--force-device-scale-factor=1.5",
+    "--window-size=1560,1040",
+    "--virtual-time-budget=10000",
+    `--screenshot=${png}`,
+    `${pathToFileURL(blueprint).href}#figure`,
+  ],
+  { stdio: "ignore" },
+);
+console.log(`wrote ${path.relative(process.cwd(), png)}`);
