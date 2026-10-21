@@ -1,6 +1,6 @@
 {
   "name": "agentlore",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Your second brain for AI coding agents: local-first memory of every session and of each project, shared by Claude Code, Codex, Cursor and Antigravity.",
   "keywords": [
     "mcp",
