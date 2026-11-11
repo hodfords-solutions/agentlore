@@ -56,19 +56,19 @@
     "docs:pdf": "node scripts/render-how-it-works.mjs"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "~1.32.1",
+    "@modelcontextprotocol/sdk": "~1.32.2",
     "better-sqlite3": "^13.0.3",
-    "commander": "^15.0.0",
+    "commander": "^15.1.0",
     "zod": "^4.6.7"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.15",
+    "@biomejs/biome": "^2.6.6",
     "@changesets/cli": "^3.0.3",
     "@types/better-sqlite3": "^9.6.0",
     "@types/node": "^22.20.5",
-    "@vitest/coverage-v8": "^5.0.5",
+    "@vitest/coverage-v8": "^5.1.0",
     "typescript": "^7.0.2",
-    "vitest": "^5.0.5"
+    "vitest": "^5.1.0"
   },
   "pnpm": {
     "ignoredBuiltDependencies": [
